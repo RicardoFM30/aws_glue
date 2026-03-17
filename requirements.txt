@@ -1,2 +1,9 @@
 Faker==23.3.0
 PyMySQL==1.1.0
+pymongo~=4.15.5
+
+# PySpark para Glue / procesamiento ETL
+pyspark==3.5.0
+
+# Pandas (para manipulación de datos antes de convertir a Spark DataFrame)
+pandas==2.1.0

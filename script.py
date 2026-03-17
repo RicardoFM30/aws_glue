@@ -24,25 +24,10 @@ proyectos = ['Alpha', 'Beta', 'Gamma', 'Delta', 'Omega']
 roles = ['Developer', 'Tester', 'Analyst', 'Manager', 'Lead']
 
 # Limpiar tablas antes de insertar
-cur.execute("DELETE FROM empleados;")
 cur.execute("DELETE FROM proyectos_empleados;")
-cur.execute("DELETE FROM evaluaciones;")
 
 # Generar datos
 for _ in range(NUM_REGISTROS):
-    # Tabla empleados
-    nombre = fake.name()
-    email = fake.unique.email()
-    departamento = random.choice(departamentos)
-    puesto = random.choice(puestos)
-    sueldo = random.randint(20000, 120000)
-    antiguedad = random.randint(0, 20)
-    
-    cur.execute("""
-        INSERT INTO empleados (nombre, email, departamento, puesto, sueldo, antiguedad)
-        VALUES (%s, %s, %s, %s, %s, %s)
-    """, (nombre, email, departamento, puesto, sueldo, antiguedad))
-    
     # Tabla proyectos_empleados
     proyecto = random.choice(proyectos)
     horas = random.randint(10, 160)
@@ -53,16 +38,6 @@ for _ in range(NUM_REGISTROS):
         VALUES (%s, %s, %s, %s)
     """, (email, proyecto, horas, rol))
     
-    # Tabla evaluaciones
-    rendimiento = random.randint(1, 10)
-    feedback = fake.sentence(nb_words=6)
-    fecha_eval = fake.date_this_year()
-    
-    cur.execute("""
-        INSERT INTO evaluaciones (email, rendimiento, feedback_ultimo_mes, fecha_ultima_evaluacion)
-        VALUES (%s, %s, %s, %s)
-    """, (email, rendimiento, feedback, fecha_eval))
-
 # Guardar cambios y cerrar
 conn.commit()
 cur.close()
