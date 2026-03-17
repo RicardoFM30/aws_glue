@@ -7,3 +7,5 @@ pyspark==3.5.0
 
 # Pandas (para manipulación de datos antes de convertir a Spark DataFrame)
 pandas==2.1.0
+
+python-dotenv==1.0.1
